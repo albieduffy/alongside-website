@@ -1,0 +1,251 @@
+/* Landing page (home only). Every rule is scoped to `.al-…`, so no other page changes.
+   Colours come from the theme's own variables, so the page follows the chosen palette and the
+   light/dark toggle. To reskin the whole site (header, hero, buttons), change `palette.primary`
+   in zensical.toml. */
+
+/* Let the home page's sections run the full width of the window (the theme normally centres a column). */
+.md-main__inner:has(.al-home) {
+  max-width: none;
+  margin: 0;
+}
+
+.al-home {
+  --al-gutter: clamp(0.8rem, 3vw, 1.25rem);
+  --al-band-pad: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.al-home .al-wrap {
+  max-width: 61rem;
+  margin: 0 auto;
+  padding-inline: var(--al-gutter);
+}
+
+.al-home .al-band {
+  padding-block: var(--al-band-pad);
+}
+
+.al-home .al-band--alt {
+  background: var(--md-code-bg-color);
+}
+
+.al-home .al-band h2 {
+  text-align: center;
+  margin: 0 0 1.75rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+/* Hero */
+/* The theme's root font size is 125%, so 1rem is 20px here. Sizes below are chosen with that in mind. */
+.al-home .al-hero {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.al-home .al-hero-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 60em) {
+  .al-home .al-hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2.5rem;
+  }
+}
+
+.al-home .al-hero h1 {
+  margin: 0 0 0.6rem;
+  color: inherit;
+  font-weight: 700;
+  font-size: clamp(1.45rem, 3.2vw, 2rem);
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+}
+
+.al-home .al-hero p {
+  color: inherit;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+  line-height: 1.55;
+  margin: 0 0 0.9rem;
+}
+
+.al-home .al-hero .md-button {
+  background: var(--md-primary-bg-color);
+  border-color: var(--md-primary-bg-color);
+  color: var(--md-primary-fg-color);
+  margin: 0.15rem 0.4rem 0.15rem 0;
+}
+
+.al-home .al-hero .md-button.al-btn-ghost {
+  background: transparent;
+  color: var(--md-primary-bg-color);
+  border: 2px solid var(--md-primary-bg-color);
+}
+
+.al-home .al-hero .md-button:hover,
+.al-home .al-hero .md-button:focus {
+  background: var(--md-accent-fg-color);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-bg-color);
+}
+
+/* Example conversation */
+.al-home .al-chat {
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  border-radius: 0.7rem;
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.al-home .al-chat-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--md-default-fg-color--light);
+}
+
+.al-home .al-msg {
+  padding: 0.65rem 0.95rem;
+  max-width: 92%;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.al-home .al-msg p {
+  margin: 0;
+  color: inherit;
+  font-size: inherit !important;
+}
+
+.al-home .al-msg--user {
+  justify-self: end;
+  background: var(--md-code-bg-color);
+  border-radius: 1rem 1rem 0.25rem 1rem;
+}
+
+.al-home .al-msg--ai {
+  justify-self: start;
+  background: var(--md-accent-fg-color--transparent);
+  border-radius: 1rem 1rem 1rem 0.25rem;
+}
+
+.al-home .al-tool {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 0.3rem;
+}
+
+/* Help popout: floats bottom-right, can be dismissed, then leaves a small "Need help?" button.
+   CSS only (a checkbox), so it works without JavaScript and stores nothing: it returns on reload. */
+.al-home .al-popout {
+  position: fixed;
+  z-index: 3;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  max-width: 17rem;
+  margin-left: auto;
+}
+
+/* The theme tints admonitions with a see-through colour; put that tint over a solid background so the
+   page text can't show through the popout. */
+.al-home .al-popout .admonition.al-popout-card {
+  margin: 0;
+  background-color: var(--md-default-bg-color);
+  background-image: linear-gradient(#ff17441a, #ff17441a);
+  box-shadow: var(--md-shadow-z3);
+}
+
+.al-home .al-popout-card .admonition-title {
+  padding-right: 2.2rem;
+}
+
+.al-home .al-popout-card p {
+  margin: 0.4em 0;
+}
+
+.al-home .al-popout-dismiss {
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0.35rem;
+  right: 0.35rem;
+  z-index: 1;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+}
+
+.al-home .al-popout-dismiss::before {
+  content: "\00d7";
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--md-default-fg-color);
+}
+
+.al-home .al-popout-dismiss:hover {
+  background: var(--md-default-fg-color--lightest);
+}
+
+.al-home .al-popout-dismiss:focus-visible {
+  outline: 2px solid var(--md-accent-fg-color);
+  outline-offset: 2px;
+}
+
+.al-home .al-popout-dismiss:checked,
+.al-home .al-popout-dismiss:checked ~ .al-popout-card {
+  display: none;
+}
+
+.al-home .al-popout-pill {
+  display: none;
+  margin: 0;
+  text-align: right;
+}
+
+.al-home .al-popout-dismiss:checked ~ .al-popout-pill {
+  display: block;
+}
+
+.al-home .al-popout-pill .twemoji svg {
+  fill: none;
+  stroke: currentColor;
+  width: 0.9em;
+  height: 0.9em;
+  vertical-align: -0.1em;
+}
+
+.al-home .al-popout-pill a {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border: 2px solid #ff1744;
+  border-radius: 2rem;
+  background: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  font-size: 0.7rem;
+  font-weight: 700;
+  box-shadow: var(--md-shadow-z2);
+}
+
+/* Cards and steps reuse the theme's own `grid cards`; just give them room */
+.al-home .grid.cards {
+  margin: 0 auto;
+}
+
+/* Questions */
+.al-home .al-faq .al-wrap {
+  max-width: 46rem;
+}
